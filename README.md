@@ -13,7 +13,7 @@ This Java program implements a simple number game where two players, Naser and A
 
 ## Implementation Details
 
-- **Java Version**: This program is written in Java.
+- **Java Version**: This program is written in Java 17.
 - **Input Handling**: User inputs are managed using the `Scanner` class.
 - **Game Logic**: The core game logic is implemented through the `whoWins` method, which determines the winner based on the current number.
 - **Recursion**: The game logic utilizes recursion to determine the winner of each turn.
