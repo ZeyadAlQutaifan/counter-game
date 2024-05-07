@@ -51,7 +51,6 @@ public class Main {
         return power;
     }
 
-
     public static boolean isPowerOfTwo(int n) {
         // A number is a power of 2 if it is greater than 0 and has only one bit set in its binary representation.
         // We can use the fact that a power of 2 always has a single '1' bit.
