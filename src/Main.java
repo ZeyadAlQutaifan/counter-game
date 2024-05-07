@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Main {
+    static boolean naserWins = true;
+
     public static void main(String[] args) {
         init();
     }
@@ -10,6 +12,10 @@ public class Main {
         try {
             System.out.println("Naser insert number:");
             int initialValue = scanner.nextInt();
+            if (initialValue == 1) {
+                System.out.println("The winner is: Ali");
+                return;
+            }
             String winner = whoWins(initialValue);
             System.out.println("The winner is: " + winner);
         } catch (Exception e) {
@@ -20,19 +26,20 @@ public class Main {
     }
 
     public static String whoWins(final int numberInput) {
-        boolean naserWins = true;
+
         int numberProcess = numberInput;
-        if (numberProcess == 1) {
-            return "Ali";
+        if (isPowerOfTwo(numberProcess)) {
+            numberProcess = numberProcess / 2;
+        } else {
+            int nextLower = getNextLowerPowerOfTwo(numberProcess);
+            numberProcess -= nextLower;
         }
-        while (numberProcess / 2 != 1) {
-            naserWins = !naserWins;
-            if ((numberProcess & -numberProcess) == numberProcess) {
-                numberProcess = numberProcess / 2;
-            } else {
-                numberProcess = numberProcess - getNextLowerPowerOfTwo(numberProcess);
-            }
+        if(numberProcess == 1){
+            return naserWins ? "Naser" : "Ali";
         }
+        naserWins = !naserWins;
+        whoWins(numberProcess);
+
         return naserWins ? "Naser" : "Ali";
     }
 
@@ -43,5 +50,15 @@ public class Main {
         }
         return power;
     }
+
+
+    public static boolean isPowerOfTwo(int n) {
+        // A number is a power of 2 if it is greater than 0 and has only one bit set in its binary representation.
+        // We can use the fact that a power of 2 always has a single '1' bit.
+        // So, we can check if the number is greater than 0 and the count of set bits is exactly 1.
+        return n > 0 && Integer.bitCount(n) == 1;
+    }
+
+
 }
 
